@@ -64,7 +64,7 @@ export default function HeroSlider() {
 
     return (
         <section
-            className="relative w-full aspect-video md:h-[500px] lg:h-[550px] md:aspect-auto overflow-hidden bg-gray-900"
+            className="relative w-full aspect-[4/3] sm:aspect-video md:aspect-[21/9] lg:aspect-[24/7] xl:aspect-[3/1] overflow-hidden bg-gray-100"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
         >
@@ -80,11 +80,23 @@ export default function HeroSlider() {
                  Using standard img tag here for simplicity if next/image config is strict with artifact paths, 
                  but Next/Image is preferred. We will use a wrapper div for relative sizing. */}
                         <div className="relative w-full h-full">
-                            <img
+                            <Image
                                 src={slide.image}
                                 alt={slide.headline}
-                                className="w-full h-full object-fill md:object-cover"
+                                fill
+                                priority={index === 0}
+                                className="object-fill sm:object-cover md:object-contain lg:object-fill"
+                                sizes="100vw"
                             />
+                            {/* SEO / Accessibility Text */}
+                            <div className="sr-only">
+                                {index === 0 ? (
+                                    <h1>{slide.headline}</h1>
+                                ) : (
+                                    <h2>{slide.headline}</h2>
+                                )}
+                                <p>{slide.subtext}</p>
+                            </div>
                         </div>
                     </div>
 
