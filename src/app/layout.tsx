@@ -73,6 +73,7 @@ import TopBar from "@/components/TopBar";
 import MainHeader from "@/components/MainHeader";
 import TrustStrip from "@/components/TrustStrip";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 
 export default function RootLayout({
   children,
@@ -146,6 +147,7 @@ export default function RootLayout({
             })
           }}
         />
+        <Analytics />
       </body>
     </html>
   );
