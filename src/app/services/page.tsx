@@ -10,24 +10,31 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
     return (
-        <div>
-            <div className="bg-primary-950 text-white py-16 text-center">
-                <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Services</h1>
-                <p className="text-primary-200 max-w-2xl mx-auto px-4">
-                    Comprehensive Vedic Astrology solutions for all aspects of your life.
-                </p>
-            </div>
+        <div className="flex flex-col min-h-screen bg-white">
+            {/* Hero Section */}
+            <section className="relative py-20 bg-gradient-to-br from-orange-50 via-white to-orange-100 overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-300 via-orange-500 to-orange-300"></div>
+                <div className="container mx-auto px-4 relative z-10 text-center max-w-4xl">
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 text-orange-950 tracking-tight leading-tight">
+                        Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-orange-400">Services</span>
+                    </h1>
+                    <p className="text-xl md:text-2xl text-gray-700 leading-relaxed max-w-3xl mx-auto font-medium">
+                        Comprehensive Vedic Astrology solutions for all aspects of your life.
+                    </p>
+                </div>
+            </section>
 
             <Services />
 
-            <section className="py-16 bg-primary-50 text-center">
+            {/* CTA Section */}
+            <section className="py-16 bg-orange-50 border-t border-orange-100 text-center">
                 <div className="container mx-auto px-4">
-                    <h2 className="text-2xl font-bold mb-6">Need Personalized Consultation?</h2>
+                    <h2 className="text-3xl font-bold mb-6 text-orange-900">Need Personalized Consultation?</h2>
                     <Link
                         href="/contact"
-                        className="inline-flex items-center justify-center gap-2 bg-secondary-500 text-primary-950 px-8 py-3 rounded-full font-bold hover:bg-secondary-400 transition-colors"
+                        className="inline-flex items-center justify-center gap-2 bg-orange-500 text-white px-8 py-4 rounded-full font-bold hover:bg-orange-600 hover:-translate-y-1 shadow-md hover:shadow-lg transition-all duration-300"
                     >
-                        Contact Now <MoveRight className="h-4 w-4" />
+                        Contact Now <MoveRight className="h-5 w-5" />
                     </Link>
                 </div>
             </section>
