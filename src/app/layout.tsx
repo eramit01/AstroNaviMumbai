@@ -72,6 +72,7 @@ import Footer from "@/components/Footer";
 import TopBar from "@/components/TopBar";
 import MainHeader from "@/components/MainHeader";
 import TrustStrip from "@/components/TrustStrip";
+import Script from "next/script";
 
 export default function RootLayout({
   children,
@@ -80,6 +81,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-D45YC2DLQL"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-D45YC2DLQL');
+          `}
+        </Script>
+      </head>
       <body
         className={`${poppins.variable} font-sans antialiased flex flex-col min-h-screen`}
       >
