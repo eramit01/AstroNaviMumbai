@@ -49,11 +49,10 @@ export default function Testimonials({ area = "Navi Mumbai" }: { area?: string }
                                 </div>
                             </div>
 
-                            {/* Review Image - Full Visibility - No Animation */}
                             <div className="relative w-full h-auto bg-gray-100 rounded-lg overflow-hidden border border-gray-100 p-1">
                                 <Image
                                     src={t.image}
-                                    alt="Client Review"
+                                    alt={`Review from happy client of Astrologer in ${area}`}
                                     width={400}
                                     height={300}
                                     className="w-full h-auto object-contain rounded"

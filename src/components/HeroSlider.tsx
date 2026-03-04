@@ -90,11 +90,7 @@ export default function HeroSlider() {
                             />
                             {/* SEO / Accessibility Text */}
                             <div className="sr-only">
-                                {index === 0 ? (
-                                    <h1>{slide.headline}</h1>
-                                ) : (
-                                    <h2>{slide.headline}</h2>
-                                )}
+                                <h2>{slide.headline}</h2>
                                 <p>{slide.subtext}</p>
                             </div>
                         </div>

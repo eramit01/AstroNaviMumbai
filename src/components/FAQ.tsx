@@ -84,6 +84,25 @@ export default function FAQ({ area = "Navi Mumbai" }: { area?: string }) {
                     ))}
                 </div>
             </div>
+
+            {/* JSON-LD Schema for FAQ */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "FAQPage",
+                        "mainEntity": FAQS.map(faq => ({
+                            "@type": "Question",
+                            "name": faq.question.includes("clients") ? faq.question.replace("clients", `clients in ${area}`) : faq.question,
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": faq.answer
+                            }
+                        }))
+                    })
+                }}
+            />
         </section>
     );
 }

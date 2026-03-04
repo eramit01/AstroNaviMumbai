@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X, ChevronDown, Moon, Calendar } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -89,10 +90,13 @@ export default function MainHeader() {
                     {/* Logo Section */}
                     <Link href="/" className="flex items-center gap-2 md:gap-3 group">
                         <div className="relative h-12 w-32 md:h-24 md:w-64 transition-transform hover:scale-105 duration-300">
-                            <img
+                            <Image
                                 src="/Logos/mainLogo.png"
                                 alt="Astrologer in Navi Mumbai"
-                                className="h-full w-full object-contain"
+                                fill
+                                sizes="(max-width: 768px) 128px, 256px"
+                                className="object-contain"
+                                priority
                             />
                         </div>
                     </Link>

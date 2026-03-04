@@ -27,7 +27,7 @@ export const NAVIGATION_LINKS = [
 ];
 
 export const CONTACT_INFO = {
-    phone: "+91 9323600011",
+    phone: "+91 93236 00011",
     whatsapp: "+919323600011",
     email: "gulabchandmaurya@gmail.com",
     address: "Sai Sagar CHS, B-305, Plot no-50, Sector 20, Kharghar, Navi Mumbai, Maharashtra 410210"

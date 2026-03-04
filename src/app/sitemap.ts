@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { NAVI_MUMBAI_AREAS } from "@/lib/constants";
 
-const BASE_URL = "https://astrologerinnavimumbai.com"; // Replace with actual domain
+const BASE_URL = "https://www.astrologerinnavimumbai.in";
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const staticRoutes = [

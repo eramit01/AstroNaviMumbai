@@ -1,6 +1,12 @@
 import Services from "@/components/Services";
 import { MoveRight } from "lucide-react";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Astrology Services in Navi Mumbai | Kundali, Vastu & Palmistry",
+    description: "Explore comprehensive Vedic Astrology solutions offered by the best astrologer in Navi Mumbai, including Palmistry, Gemstone Consultation, and more.",
+};
 
 export default function ServicesPage() {
     return (

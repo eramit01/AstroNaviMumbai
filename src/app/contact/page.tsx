@@ -1,6 +1,12 @@
 import { Phone, Mail, MapPin } from "lucide-react";
 import { CONTACT_INFO } from "@/lib/constants";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Contact Us | Astrologer in Navi Mumbai Appointments",
+    description: "Contact the best astrologer in Navi Mumbai. Book an appointment for online or offline consultation regarding career, marriage, or business.",
+};
 
 export default function ContactPage() {
     return (

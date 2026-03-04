@@ -36,8 +36,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Best Astrologer in Navi Mumbai | Accurate Predictions",
-    description: "Expert astrology consultation in Navi Mumbai. Specialist in marriage, career, and business problems. 30+ years of trusted experience.",
-    url: "https://yourwebsite.com", // Recommendation: update with actual domain
+    description: "Consult the best and most genuine astrologer in Navi Mumbai with 30+ years of trusted experience. Get solutions for marriage, career, child birth, and Kundli matching.",
+    url: "https://www.astrologerinnavimumbai.in/",
     siteName: "Best Astrologer Navi Mumbai",
     locale: "en_IN",
     type: "website",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     creator: "@yourhandle", // Update if you have a Twitter Handle
   },
   alternates: {
-    canonical: "https://yourwebsite.com", // Recommendation: update with actual domain
+    canonical: "https://www.astrologerinnavimumbai.in/",
   },
   icons: {
     icon: "/Logos/Fav.png",
@@ -88,6 +88,49 @@ export default function RootLayout({
         <TrustStrip />
         <main className="flex-1">{children}</main>
         <Footer />
+        {/* Local Business Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "Best Astrologer Navi Mumbai",
+              "image": "https://www.astrologerinnavimumbai.in/AboutImg.png",
+              "@id": "https://www.astrologerinnavimumbai.in/",
+              "url": "https://www.astrologerinnavimumbai.in/",
+              "telephone": "+91 93236 00011",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Sai Sagar CHS, B-305, Plot no-50, Sector 20, Kharghar",
+                "addressLocality": "Navi Mumbai",
+                "addressRegion": "Maharashtra",
+                "postalCode": "410210",
+                "addressCountry": "IN"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 19.0436,
+                "longitude": 73.0645
+              },
+              "openingHoursSpecification": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                  "Saturday",
+                  "Sunday"
+                ],
+                "opens": "09:00",
+                "closes": "21:00"
+              },
+              "priceRange": "$$"
+            })
+          }}
+        />
       </body>
     </html>
   );

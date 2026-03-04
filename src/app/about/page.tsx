@@ -1,4 +1,11 @@
 import { Star, Award, Users } from "lucide-react";
+import { Metadata } from "next";
+import Link from "next/link";
+
+export const metadata: Metadata = {
+    title: "About Us | Best Astrologer in Navi Mumbai",
+    description: "Learn more about the best astrologer in Navi Mumbai with over 15 years of experience in Vedic Astrology, Vastu Shastra, and Kundli Matching.",
+};
 
 export default function AboutPage() {
     return (
@@ -37,8 +44,8 @@ export default function AboutPage() {
                 <ul className="list-disc pl-6 space-y-2">
                     <li>Detailed and accurate Horoscope Analysis</li>
                     <li>Specific solutions for Job and Business growth</li>
-                    <li>Expertise in Match Making and Marriage Consultation</li>
-                    <li>Vastu Shastra Consultation for Homes and Offices</li>
+                    <li>Expertise in <Link href="/services#kundli-matching" className="text-secondary-600 hover:text-secondary-700 underline font-medium">Match Making and Marriage Consultation</Link></li>
+                    <li><Link href="/services#vastu-specialist" className="text-secondary-600 hover:text-secondary-700 underline font-medium">Vastu Shastra Consultation</Link> for Homes and Offices</li>
                     <li>Complete confidentiality and privacy</li>
                 </ul>
             </div>
