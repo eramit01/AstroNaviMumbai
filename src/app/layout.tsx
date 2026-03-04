@@ -95,6 +95,20 @@ export default function RootLayout({
             gtag('config', 'G-D45YC2DLQL');
           `}
         </Script>
+        
+        {/* Chatbot Widget Loader */}
+        <Script id="chatbot-widget" strategy="afterInteractive">
+          {`
+            (function(){
+              const spaId = "astrologer-in-navimumbai";
+              const script = document.createElement('script');
+              script.src = 'https://chatbot.bookingbot.in//bot.js?spa=' + spaId;
+              script.async = true;
+              script.setAttribute('data-spa', spaId);
+              document.head.appendChild(script);
+            })();
+          `}
+        </Script>
       </head>
       <body
         className={`${poppins.variable} font-sans antialiased flex flex-col min-h-screen`}
