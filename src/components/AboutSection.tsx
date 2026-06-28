@@ -37,7 +37,7 @@ export default function AboutSection({ area = "Navi Mumbai" }: AboutSectionProps
                     <div className="flex flex-col justify-center space-y-6">
                         <div className="space-y-4">
                             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
-                                30+ Years of <span className="text-orange-900">Trusted Experience in {area}</span>
+                                30+ Years of <span className="text-orange-900">Trusted Experience in Astrology</span>
                             </h2>
                             <p className="text-lg text-gray-700 leading-relaxed font-medium">
                                 Helping thousands of families in {area} find clarity and peace through ancient Vedic wisdom.

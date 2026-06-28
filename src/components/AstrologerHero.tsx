@@ -1,8 +1,29 @@
-import Link from "next/link";
-import { Star, ShieldCheck, Clock, MessageCircle, PhoneCall, CalendarCheck, Users } from "lucide-react";
-import { CONTACT_INFO } from "@/lib/constants";
+"use client";
 
-export default function AstrologerHero() {
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Star, ShieldCheck, Clock, PhoneCall, CalendarCheck, Users } from "lucide-react";
+import { CONTACT_INFO } from "@/lib/constants";
+import { getWhatsAppMessage } from "@/lib/utils";
+import WhatsAppIcon from "./WhatsAppIcon";
+import React from "react";
+
+interface AstrologerHeroProps {
+    title?: React.ReactNode;
+    subtitle?: string;
+    tagText?: string;
+    area?: string;
+}
+
+export default function AstrologerHero({ 
+    title = <>Best Astrologer Near You in <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-orange-500 inline-block">Mumbai & Navi Mumbai</span></>,
+    subtitle = "Get accurate astrology guidance for marriage, career, business, relationships, health, and life decisions.",
+    tagText = "Navi Mumbai's Most Trusted Astrologer",
+    area = "Navi Mumbai"
+}: AstrologerHeroProps) {
+    const pathname = usePathname();
+    const waLink = getWhatsAppMessage(pathname, CONTACT_INFO.whatsapp);
+
     return (
         <section className="relative overflow-hidden bg-orange-50 text-gray-900 py-16 lg:py-24">
             {/* Premium Background Effects */}
@@ -13,17 +34,17 @@ export default function AstrologerHero() {
                 {/* Tag */}
                 <div className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2 text-sm font-bold text-orange-800 border border-orange-200 mb-8 shadow-sm backdrop-blur-sm">
                     <ShieldCheck className="h-5 w-5 fill-orange-100 text-orange-600" />
-                    <span className="tracking-wide uppercase">Trusted Vedic Astrologer</span>
+                    <span className="tracking-wide uppercase">{tagText}</span>
                 </div>
 
                 {/* Main Heading */}
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 text-gray-900 drop-shadow-sm leading-tight">
-                    Best Astrologer Near You in <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-orange-500 inline-block">Mumbai & Navi Mumbai</span>
+                    {title}
                 </h1>
 
                 {/* Subheading */}
                 <p className="max-w-3xl mx-auto text-lg md:text-2xl text-gray-700 mb-10 leading-relaxed font-medium">
-                    Get accurate astrology guidance for marriage, career, business, relationships, health, and life decisions.
+                    {subtitle}
                 </p>
 
                 {/* Trust Badges */}
@@ -55,12 +76,12 @@ export default function AstrologerHero() {
                         <PhoneCall className="mr-2 h-5 w-5" />
                         Call Now
                     </Link>
-                    <Link
-                        href={`https://wa.me/${CONTACT_INFO.whatsapp.replace(/[^0-9]/g, '')}?text=Hi,%20I%20want%20to%20book%20an%20astrology%20consultation.`}
+                    <Link 
+                        href={waLink}
                         target="_blank"
                         className="w-full sm:w-auto inline-flex h-14 items-center justify-center rounded-full bg-[#25D366] px-8 text-lg font-bold text-white shadow-lg shadow-[#25D366]/20 transition-all duration-300 hover:shadow-xl hover:shadow-[#25D366]/30 hover:-translate-y-1"
                     >
-                        <MessageCircle className="mr-2 h-5 w-5" />
+                        <WhatsAppIcon className="mr-2 h-5 w-5" />
                         WhatsApp
                     </Link>
                     <Link

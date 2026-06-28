@@ -1,8 +1,15 @@
+"use client";
+
 import { Phone, Facebook, Instagram, Youtube, Twitter } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { CONTACT_INFO } from "@/lib/constants";
+import { getWhatsAppMessage } from "@/lib/utils";
 
 export default function TopBar() {
+    const pathname = usePathname();
+    const waLink = getWhatsAppMessage(pathname, CONTACT_INFO.whatsapp);
+
     return (
         <div className="w-full bg-orange-50 border-b border-orange-200 shadow-sm z-50 relative text-orange-900">
             <div className="container mx-auto px-3 md:px-6 h-auto py-2 md:py-0 md:h-12 flex flex-col md:flex-row items-center justify-between text-xs md:text-sm gap-2 md:gap-0">
@@ -17,9 +24,10 @@ export default function TopBar() {
                         <span className="group-hover:text-orange-700 transition-colors">{CONTACT_INFO.phone}</span>
                     </Link>
 
-                    <Link
-                        href={`https://wa.me/${CONTACT_INFO.whatsapp.replace('+', '')}`}
+                    <a
+                        href={waLink}
                         target="_blank"
+                        rel="noopener noreferrer"
                         className="flex items-center gap-1.5 text-orange-900 hover:text-orange-600 transition-colors font-medium group"
                         aria-label="Chat on WhatsApp"
                     >
@@ -32,7 +40,7 @@ export default function TopBar() {
                         </svg>
                         <span className="hidden xs:inline group-hover:text-orange-700 transition-colors">{CONTACT_INFO.whatsapp}</span>
                         <span className="xs:hidden">WhatsApp</span>
-                    </Link>
+                    </a>
                 </div>
 
                 {/* Right Section: Social Media Links */}

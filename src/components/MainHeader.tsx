@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { Menu, X, ChevronDown, Moon, Calendar } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, getWhatsAppMessage } from "@/lib/utils";
 
 const NAVIGATION_MENU = [
     { name: "Home", href: "/" },
@@ -55,6 +56,9 @@ export default function MainHeader() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
     const [scrolled, setScrolled] = useState(false);
+
+    const pathname = usePathname();
+    const waLink = getWhatsAppMessage(pathname, "919323600011");
 
     useEffect(() => {
         const handleScroll = () => {
@@ -146,14 +150,15 @@ export default function MainHeader() {
 
                     {/* Right Section: CTA & Mobile Toggle */}
                     <div className="flex items-center gap-4">
-                        <Link
-                            href="https://wa.me/919323600011?text=Hello%20Panditji,%20I%20want%20to%20book%20an%20appointment.%20%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%A4%E0%A5%87%20%E0%A4%AA%E0%A4%82%E0%A4%A1%E0%A4%BF%E0%A4%A4%E0%A4%9C%E0%A5%80,%20%E0%A4%AE%E0%A5%81%E0%A4%9D%E0%A5%87%20%E0%A4%85%E0%A4%AA%E0%A5%89%E0%A4%87%E0%A4%82%E0%A4%9F%E0%A4%AE%E0%A5%87%E0%A4%82%E0%A4%9F%20%E0%A4%AC%E0%A5%81%E0%A4%95%20%E0%A4%95%E0%A4%B0%E0%A4%A8%E0%A4%BE%20%E0%A4%B9%E0%A5%88%E0%A5%A4"
+                        <a
+                            href={waLink}
                             target="_blank"
+                            rel="noopener noreferrer"
                             className="hidden lg:inline-flex items-center justify-center gap-2 rounded-full bg-orange-600 px-7 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-orange-700 hover:shadow-lg hover:-translate-y-0.5 shadow-md shadow-orange-100 whitespace-nowrap"
                         >
                             <Calendar className="h-4 w-4" />
                             <span>Book Appointment</span>
-                        </Link>
+                        </a>
 
                         {/* Mobile Menu Toggle */}
                         <button

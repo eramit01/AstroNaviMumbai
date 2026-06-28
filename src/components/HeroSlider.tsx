@@ -3,11 +3,12 @@
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, MessageCircle, Calendar, ChevronLeft, ChevronRight } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Phone, Calendar, ChevronLeft, ChevronRight } from "lucide-react";
 import { CONTACT_INFO } from "@/lib/constants";
+import { getWhatsAppMessage } from "@/lib/utils";
+import WhatsAppIcon from "./WhatsAppIcon";
 
-// Image imports (assuming they are placed in public/images or similar, using absolute paths for now as they are artifacts)
-// In a real app, these would be moved to public/ and referenced as /images/...
 const SLIDES = [
     {
         id: 1,
@@ -15,7 +16,7 @@ const SLIDES = [
         subtext: "Love Marriage • Late Marriage • Kundali Matching",
         image: "/HeroImg/1.png",
         cta1: { text: "Call Now", icon: Phone, href: `tel:${CONTACT_INFO.phone}` },
-        cta2: { text: "WhatsApp Consultation", icon: MessageCircle, href: `https://wa.me/${CONTACT_INFO.whatsapp.replace('+', '')}` }
+        cta2: { text: "WhatsApp Consultation", icon: WhatsAppIcon, href: "WA_LINK" }
     },
     {
         id: 2,
@@ -31,21 +32,31 @@ const SLIDES = [
         subtext: "Accurate Astrology-Based Guidance",
         image: "/HeroImg/3.png",
         cta1: { text: "Call for Guidance", icon: Phone, href: `tel:${CONTACT_INFO.phone}` },
-        cta2: { text: "WhatsApp Now", icon: MessageCircle, href: `https://wa.me/${CONTACT_INFO.whatsapp.replace('+', '')}` }
+        cta2: { text: "WhatsApp Now", icon: WhatsAppIcon, href: "WA_LINK" }
     }
 ];
 
 export default function HeroSlider() {
+    const pathname = usePathname();
+    const waLink = getWhatsAppMessage(pathname, CONTACT_INFO.whatsapp);
+
+    const dynamicSlides = SLIDES.map(slide => {
+        if (slide.cta2 && slide.cta2.href === "WA_LINK") {
+            return { ...slide, cta2: { ...slide.cta2, href: waLink } };
+        }
+        return slide;
+    });
+
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
 
     const nextSlide = useCallback(() => {
-        setCurrentSlide((prev) => (prev + 1) % SLIDES.length);
-    }, []);
+        setCurrentSlide((prev) => (prev + 1) % dynamicSlides.length);
+    }, [dynamicSlides.length]);
 
     const prevSlide = useCallback(() => {
-        setCurrentSlide((prev) => (prev - 1 + SLIDES.length) % SLIDES.length);
-    }, []);
+        setCurrentSlide((prev) => (prev - 1 + dynamicSlides.length) % dynamicSlides.length);
+    }, [dynamicSlides.length]);
 
     const goToSlide = useCallback((index: number) => {
         setCurrentSlide(index);
@@ -68,7 +79,7 @@ export default function HeroSlider() {
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
         >
-            {SLIDES.map((slide, index) => (
+            {dynamicSlides.map((slide, index) => (
                 <div
                     key={slide.id}
                     className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
@@ -118,8 +129,8 @@ export default function HeroSlider() {
             </button>
 
             {/* Dots Navigation */}
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-30">
-                {SLIDES.map((_, index) => (
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-3 z-30">
+                {dynamicSlides.map((_, index) => (
                     <button
                         key={index}
                         onClick={() => goToSlide(index)}
